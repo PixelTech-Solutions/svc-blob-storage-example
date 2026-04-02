@@ -1,0 +1,1 @@
+# svc-blob-storage-example
