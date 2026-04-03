@@ -1,0 +1,30 @@
+name: "Infrastructure - Manual"
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select environment to deploy"
+        required: true
+        type: choice
+        options:
+          - dev
+          - qa
+          - staging
+          - uat
+          - prod
+          - demo
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  deploy:
+    uses: PixelTech-Solutions/Terraform/.github/workflows/terraform.yml@main
+    with:
+      working_directory: ./infra/svc-blob-storage
+      environment: ${{ inputs.environment }}
+      project_name: blobdemo
+      service_name: svc-blob-storage
+    secrets: inherit
