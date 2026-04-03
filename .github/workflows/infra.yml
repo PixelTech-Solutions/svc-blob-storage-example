@@ -19,4 +19,5 @@ jobs:
     with:
       working_directory: ./infra
       environment: dev
+      project_name: storage
     secrets: inherit
