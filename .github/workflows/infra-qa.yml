@@ -17,7 +17,7 @@ jobs:
   qa:
     uses: PixelTech-Solutions/Terraform/.github/workflows/terraform.yml@main
     with:
-      working_directory: ./infra
+      working_directory: ./infra/svc-blob-storage
       environment: qa
       project_name: blobdemo
       service_name: svc-blob-storage
