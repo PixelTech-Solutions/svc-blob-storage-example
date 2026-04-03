@@ -3,28 +3,92 @@ name: "Infrastructure - Manual"
 on:
   workflow_dispatch:
     inputs:
-      environment:
-        description: "Select environment to deploy"
-        required: true
-        type: choice
-        options:
-          - dev
-          - qa
-          - staging
-          - uat
-          - prod
-          - demo
+      dev:
+        description: "Deploy Dev"
+        type: boolean
+        default: false
+      qa:
+        description: "Deploy QA"
+        type: boolean
+        default: false
+      staging:
+        description: "Deploy Staging"
+        type: boolean
+        default: false
+      uat:
+        description: "Deploy UAT"
+        type: boolean
+        default: false
+      prod:
+        description: "Deploy Prod"
+        type: boolean
+        default: false
+      demo:
+        description: "Deploy Demo"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
   pull-requests: write
 
 jobs:
-  deploy:
+  dev:
+    if: ${{ inputs.dev }}
     uses: PixelTech-Solutions/Terraform/.github/workflows/terraform.yml@main
     with:
       working_directory: ./infra/svc-blob-storage
-      environment: ${{ inputs.environment }}
+      environment: dev
+      project_name: blobdemo
+      service_name: svc-blob-storage
+    secrets: inherit
+
+  qa:
+    if: ${{ inputs.qa }}
+    uses: PixelTech-Solutions/Terraform/.github/workflows/terraform.yml@main
+    with:
+      working_directory: ./infra/svc-blob-storage
+      environment: qa
+      project_name: blobdemo
+      service_name: svc-blob-storage
+    secrets: inherit
+
+  staging:
+    if: ${{ inputs.staging }}
+    uses: PixelTech-Solutions/Terraform/.github/workflows/terraform.yml@main
+    with:
+      working_directory: ./infra/svc-blob-storage
+      environment: staging
+      project_name: blobdemo
+      service_name: svc-blob-storage
+    secrets: inherit
+
+  uat:
+    if: ${{ inputs.uat }}
+    uses: PixelTech-Solutions/Terraform/.github/workflows/terraform.yml@main
+    with:
+      working_directory: ./infra/svc-blob-storage
+      environment: uat
+      project_name: blobdemo
+      service_name: svc-blob-storage
+    secrets: inherit
+
+  prod:
+    if: ${{ inputs.prod }}
+    uses: PixelTech-Solutions/Terraform/.github/workflows/terraform.yml@main
+    with:
+      working_directory: ./infra/svc-blob-storage
+      environment: prod
+      project_name: blobdemo
+      service_name: svc-blob-storage
+    secrets: inherit
+
+  demo:
+    if: ${{ inputs.demo }}
+    uses: PixelTech-Solutions/Terraform/.github/workflows/terraform.yml@main
+    with:
+      working_directory: ./infra/svc-blob-storage
+      environment: demo
       project_name: blobdemo
       service_name: svc-blob-storage
     secrets: inherit
