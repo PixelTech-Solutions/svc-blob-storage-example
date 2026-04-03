@@ -11,10 +11,6 @@ on:
         description: "Deploy QA"
         type: boolean
         default: false
-      staging:
-        description: "Deploy Staging"
-        type: boolean
-        default: false
       uat:
         description: "Deploy UAT"
         type: boolean
@@ -49,16 +45,6 @@ jobs:
     with:
       working_directory: ./infra/svc-blob-storage
       environment: qa
-      project_name: blobdemo
-      service_name: svc-blob-storage
-    secrets: inherit
-
-  staging:
-    if: ${{ inputs.staging }}
-    uses: PixelTech-Solutions/Terraform/.github/workflows/terraform.yml@main
-    with:
-      working_directory: ./infra/svc-blob-storage
-      environment: staging
       project_name: blobdemo
       service_name: svc-blob-storage
     secrets: inherit
