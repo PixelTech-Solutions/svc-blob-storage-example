@@ -22,3 +22,14 @@ jobs:
       project_name: blobdemo
       service_name: svc-blob-storage
     secrets: inherit
+
+  qa:
+    needs: [dev]
+    if: github.ref == 'refs/heads/main'
+    uses: PixelTech-Solutions/Terraform/.github/workflows/terraform.yml@main
+    with:
+      working_directory: ./infra
+      environment: qa
+      project_name: blobdemo
+      service_name: svc-blob-storage
+    secrets: inherit

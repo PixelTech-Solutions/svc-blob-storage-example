@@ -15,3 +15,9 @@ variable "project_name" {
   description = "Project name used in resource naming"
   default     = "blobdemo"
 }
+
+variable "resource_group_name" {
+  type        = string
+  description = "Existing resource group name. If empty, a new RG is created as rg-<project_name>-<environment>"
+  default     = ""
+}

@@ -1,6 +1,6 @@
 output "resource_group_name" {
   description = "Name of the resource group"
-  value       = azurerm_resource_group.this.name
+  value       = local.rg_name
 }
 
 output "storage_account_name" {
