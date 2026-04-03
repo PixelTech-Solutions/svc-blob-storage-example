@@ -8,14 +8,15 @@ on:
     paths: [infra/**]
   workflow_dispatch:
     inputs:
-      apply:
-        description: "Apply infrastructure changes?"
-        type: boolean
-        default: false
-      destroy:
-        description: "Destroy infrastructure?"
-        type: boolean
-        default: false
+      action:
+        description: "What to do?"
+        type: choice
+        default: plan
+        options:
+          - plan
+          - apply
+          - destroy-plan
+          - destroy
 
 permissions:
   id-token: write
@@ -33,6 +34,5 @@ jobs:
       backend_container: tfstate
       backend_key: "svc-blob-storage-example/dev/terraform.tfstate"
       additional_args: "-var-file=environments/dev.tfvars"
-      apply: ${{ github.event.inputs.apply == 'true' }}
-      destroy: ${{ github.event.inputs.destroy == 'true' }}
+      action: ${{ github.event.inputs.action || 'plan' }}
     secrets: inherit
