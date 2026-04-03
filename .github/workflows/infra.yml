@@ -19,9 +19,4 @@ jobs:
     with:
       working_directory: ./infra
       environment: dev
-      backend_resource_group: rg-terraform-state
-      backend_storage_account: stpixeltechstate
-      backend_container: tfstate
-      backend_key: "svc-blob-storage-example/dev/terraform.tfstate"
-      additional_args: "-var-file=environments/dev.tfvars"
     secrets: inherit
