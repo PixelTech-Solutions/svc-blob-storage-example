@@ -19,5 +19,6 @@ jobs:
     with:
       working_directory: ./infra
       environment: dev
-      project_name: storage
+      project_name: blobdemo
+      service_name: svc-blob-storage
     secrets: inherit
