@@ -1,4 +1,4 @@
-name: "Infrastructure - Dev"
+name: "Infrastructure - Prod"
 
 on:
   push:
@@ -13,11 +13,11 @@ permissions:
   pull-requests: write
 
 jobs:
-  dev:
+  prod:
     uses: PixelTech-Solutions/Terraform/.github/workflows/terraform.yml@main
     with:
       working_directory: ./infra/svc-blob-storage
-      environment: dev
+      environment: prod
       project_name: blobdemo
       service_name: svc-blob-storage
     secrets: inherit
