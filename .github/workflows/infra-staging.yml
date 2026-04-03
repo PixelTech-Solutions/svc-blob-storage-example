@@ -1,4 +1,4 @@
-name: "Infrastructure - Dev"
+name: "Infrastructure - Staging"
 
 on:
   push:
@@ -11,11 +11,11 @@ permissions:
   pull-requests: write
 
 jobs:
-  dev:
+  staging:
     uses: PixelTech-Solutions/Terraform/.github/workflows/terraform.yml@main
     with:
       working_directory: ./infra/svc-blob-storage
-      environment: dev
+      environment: staging
       project_name: blobdemo
       service_name: svc-blob-storage
     secrets: inherit
